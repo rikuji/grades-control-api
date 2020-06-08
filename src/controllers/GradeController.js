@@ -1,6 +1,8 @@
 const path = require('path');
 const fs = require('fs');
 
+const Grade = require('../models/Grade');
+
 module.exports = {
   create(req, res) {
     try {
@@ -10,14 +12,7 @@ module.exports = {
         fs.readFileSync(path.resolve(__dirname, '..', 'data', 'grades.json'))
       );
 
-      const newGrade = {
-        id: data.nextId,
-        student,
-        subject,
-        type,
-        value,
-        timestamp: new Date(),
-      };
+      const newGrade = new Grade(data.nextId, student, subject, type, value);
 
       const newData = {
         nextId: data.nextId + 1,
