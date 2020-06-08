@@ -1,5 +1,5 @@
 {
-  "nextId": 50,
+  "nextId": 49,
   "grades": [
     {
       "id": 1,
@@ -376,6 +376,14 @@
       "type": "Desafio",
       "value": 36,
       "timestamp": "2020-05-19T18:21:25.278Z"
+    },
+    {
+      "id": 48,
+      "student": "Rodrigo Branas",
+      "subject": "04 - MongoDB",
+      "type": "Desafio",
+      "value": 45,
+      "timestamp": "2020-05-19T18:21:25.284Z"
     }
   ]
 }

@@ -99,4 +99,38 @@ module.exports = {
 
     return res.json({ msg: 'Grade excluida com sucesso' });
   },
+
+  readById(req, res) {
+    const { id } = req.params;
+
+    const data = JSON.parse(
+      fs.readFileSync(path.resolve(__dirname, '..', 'data', 'grades.json'))
+    );
+
+    const grade = data.grades.find((grade) => grade.id === +id);
+
+    if (!grade) {
+      return res.status(404).json({ error: 'Grade não encontrada' });
+    }
+
+    return res.status(200).json(grade);
+  },
+
+  getTotal(req, res) {
+    const { student, subject } = req.query;
+
+    const data = JSON.parse(
+      fs.readFileSync(path.resolve(__dirname, '..', 'data', 'grades.json'))
+    );
+
+    const total = data.grades.filter(
+      (grade) => grade.student === student && grade.subject === subject
+    );
+
+    console.log(total);
+
+    const sum = total.reduce((total, item) => (total = total + item.value), 0);
+
+    return res.json({ average: sum });
+  },
 };
