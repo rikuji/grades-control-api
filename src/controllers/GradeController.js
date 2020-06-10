@@ -3,7 +3,7 @@ const fs = require('fs');
 
 const Grade = require('../models/Grade');
 
-module.exports = {
+class GradeController {
   create(req, res) {
     try {
       const { student, subject, type, value } = req.body;
@@ -32,7 +32,7 @@ module.exports = {
     } catch (error) {
       console.log(error);
     }
-  },
+  }
 
   update(req, res) {
     const { id } = req.params;
@@ -72,7 +72,7 @@ module.exports = {
     );
 
     return res.status(200).json(grade);
-  },
+  }
 
   delete(req, res) {
     const { id } = req.params;
@@ -98,7 +98,7 @@ module.exports = {
     );
 
     return res.json({ msg: 'Grade excluida com sucesso' });
-  },
+  }
 
   readById(req, res) {
     const { id } = req.params;
@@ -114,7 +114,7 @@ module.exports = {
     }
 
     return res.status(200).json(grade);
-  },
+  }
 
   getTotal(req, res) {
     const { student, subject } = req.query;
@@ -132,5 +132,7 @@ module.exports = {
     const sum = total.reduce((total, item) => (total = total + item.value), 0);
 
     return res.json({ average: sum });
-  },
-};
+  }
+}
+
+module.exports = new GradeController();
